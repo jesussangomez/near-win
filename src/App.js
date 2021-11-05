@@ -107,10 +107,13 @@ export default function App() {
     )
   }
 
+  const sleep = (milli) => {
+    return new Promise(resolve => setTimeout(resolve, milli))
+  }
+
   const choosePlayer = (player) => {
     setPlayer(player)
   }
-
 
   useEffect(() => {
     if (player !== null) {
@@ -157,11 +160,10 @@ export default function App() {
       }
       
       addRace(JSON.stringify(race))
-      getLatestRaces()
     }
   }, [winner])
 
-  const startRace = () => {
+  const startRace = async () => {
     setStarted(true)
     var localWinner = null
     while(localWinner === null) {
@@ -170,6 +172,7 @@ export default function App() {
         var newPlayers = [...players]
         newPlayers[i]['progress'] += (dice * 1)
         setPlayers(newPlayers)
+        await sleep(10)
 
         if (newPlayers[i]['progress'] >= 100) {
           localWinner = newPlayers[i]
@@ -214,13 +217,13 @@ export default function App() {
                   </Balloon>
                 </div>
               </Col>
-              <Col style={{ padding: "2rem" }} xs={12}>
+              <Col style={{ paddingTop: '2rem' }} xs={12}>
                 <NesContainer title="Choose your Player">
-                  <Button disabled={player === 0} onClick={() => choosePlayer(0)}>{players[0]['name']}</Button>
-                  <Button disabled={player === 1} onClick={() => choosePlayer(1)} primary>{players[1]['name']}</Button>
-                  <Button disabled={player === 2} onClick={() => choosePlayer(2)} success>{players[2]['name']}</Button>
-                  <Button disabled={player === 3} onClick={() => choosePlayer(3)} warning>{players[3]['name']}</Button>
-                  <Button disabled={player === 4} onClick={() => choosePlayer(4)} error>{players[4]['name']}</Button>
+                  <Button disabled={player === 0 || started} onClick={() => choosePlayer(0)}>{players[0]['name']}</Button>
+                  <Button disabled={player === 1 || started} onClick={() => choosePlayer(1)} primary>{players[1]['name']}</Button>
+                  <Button disabled={player === 2 || started} onClick={() => choosePlayer(2)} success>{players[2]['name']}</Button>
+                  <Button disabled={player === 3 || started} onClick={() => choosePlayer(3)} warning>{players[3]['name']}</Button>
+                  <Button disabled={player === 4 || started} onClick={() => choosePlayer(4)} error>{players[4]['name']}</Button>
                 </NesContainer>
                 {/* <p style={{ marginBottom: '1em', marginTop: '3em' }}>{playerChoseText}</p>
                 <Button disabled={player === null} onClick={() => startRace()} success>Start the Race!</Button> */}
