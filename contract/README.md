@@ -1,26 +1,26 @@
-near-roshambo Smart Contract
+NEAR Win! Smart Contract
 ==================
 
-A [smart contract] written in [AssemblyScript] for an app initialized with [create-near-app]
+Un [smart contract] escrito en [AssemblyScript] para una aplicación creada con [create-near-app]
 
 
-Quick Start
+Como empezar
 ===========
 
-Before you compile this code, you will need to install [Node.js] ≥ 12
+Antes de compilar este código, necesitarás instalar [Node.js] ≥ 12
 
 
 Exploring The Code
 ==================
 
-1. The main smart contract code lives in `assembly/index.ts`. You can compile
-   it with the `./compile` script.
-2. Tests: You can run smart contract tests with the `./test` script. This runs
-   standard AssemblyScript tests using [as-pect].
+1. El código principal del smart contract se encuentra en `assembly/index.ts`. Puedes compilarlo con el script `./compile`.
+   * `addRace` es el contrato que se usa para agregar el resultado de una carrera, contiene el nombre de la cuenta logueada, el jugador que elegiste, el ganador de la carrera, y el resultado (ganaste o perdiste).
+   * `getRaces` es el contrato que se usa para obtener todas las carreras (con un límite de las últimas 10 carreras).
+
+2. Los tests de se encuentran en `test/index.ts`.
 
 
   [smart contract]: https://docs.near.org/docs/develop/contracts/overview
   [AssemblyScript]: https://www.assemblyscript.org/
   [create-near-app]: https://github.com/near/create-near-app
   [Node.js]: https://nodejs.org/en/download/package-manager/
-  [as-pect]: https://www.npmjs.com/package/@as-pect/cli
