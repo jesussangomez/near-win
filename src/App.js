@@ -124,21 +124,13 @@ export default function App() {
 
   const addRace = async (result) => {
     try {
-      // make an update call to the smart contract
       await window.contract.addRace({
-        // pass the value that the user entered in the greeting field
         result: result
       })
     } catch (e) {
-      // alert(
-      //   'Something went wrong! ' +
-      //   'Maybe you need to sign out and back in? ' +
-      //   'Check your browser console for more info.'
-      // )
       throw e
     } finally {
-      // re-enable the form, whether the call succeeded or failed
-      // fieldset.disabled = false
+      getLatestRaces()
     }
   }
 
